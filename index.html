@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>包高拢 - 财务经理 | FBP | 财务分析</title>
+    <meta name="description" content="包高拢 - 财务经理、财务BP、财务分析专家，拥有中国注册税务师、中级会计师资格，8年财务工作经验">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            transition: 0.3s;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        header .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.8rem;
+            opacity: 0.95;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        header .contact {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        header .contact a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        header .contact a:hover {
+            opacity: 1;
+        }
+
+        /* Section */
+        section {
+            padding: 100px 0;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 25px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 8px;
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-date {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .timeline-company {
+            font-size: 1.15rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .timeline-desc {
+            color: #555;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .project-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .project-stat {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Education */
+        .education-item {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .education-item .degree {
+            font-size: 1.2rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .education-item .university {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+
+        .education-achievements {
+            color: #2c3e50;
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .education-achievements span {
+            margin-right: 15px;
+        }
+
+        /* Data Visualization */
+        .data-section {
+            background: white;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-card h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Cost Reduction Bar Chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-label {
+            width: 120px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .bar-container {
+            flex: 1;
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .bar-label-right {
+            width: 100px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Skills Progress Bars */
+        .skill-progress-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .skill-progress-bar {
+            height: 12px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 6px;
+            transition: width 1s ease-out;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .achievement-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .achievement-label {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Contact */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            min-width: 280px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item p {
+            font-size: 1.15rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 350px;
+                font-size: 4rem;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 55px;
+            }
+
+            .timeline-item::before {
+                left: 11px;
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            header {
+                padding: 150px 0 100px;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .contact-item {
+                width: 100%;
+                padding: 30px;
+            }
+
+            .project-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .project-stat {
+                text-align: center;
+            }
+
+            .achievement-number {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">包高拢</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#skills">核心技能</a></li>
+                <li><a href="#experience">工作经历</a></li>
+                <li><a href="#projects">精选项目</a></li>
+                <li><a href="#education">教育背景</a></li>
+                <li><a href="#achievements">业绩亮点</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="content">
+            <h1>包高拢</h1>
+            <p class="subtitle">财务经理 | FBP | 财务分析专家</p>
+            <div class="contact">
+                <a href="tel:16601811881">📞 16601811881</a>
+                <a href="mailto:baogaolong@alumni.tongji.edu.cn">✉️ baogaolong@alumni.tongji.edu.cn</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    🎓
+                </div>
+                <div class="about-text">
+                    <h3>财务专业背景</h3>
+                    <p>中国注册税务师、中级会计师，拥有8年8个月财务工作经验。擅长财务BP、财务分析、预算管理、业财融合降本增效。</p>
+                    <p>熟悉国际会计准则、香港会计准则、中国会计准则，具备财务转型业财融合思维，将AI工作法与财务工作深度融合。</p>
+                    <div class="about-tags">
+                        <span class="tag">中国注册税务师</span>
+                        <span class="tag">中级会计师</span>
+                        <span class="tag">财务BP</span>
+                        <span class="tag">财务分析</span>
+                        <span class="tag">业财融合</span>
+                        <span class="tag">降本增效</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">核心技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>💼 财务管理</h3>
+                    <ul class="skill-list">
+                        <li>财务BP、财务分析</li>
+                        <li>全面预算管理</li>
+                        <li>合同审核、税务筹划</li>
+                        <li>资金运作管理</li>
+                        <li>内部控制管理</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🎯 行业经验</h3>
+                    <ul class="skill-list">
+                        <li>智能驾驶（BMW、头部新能源车企）</li>
+                        <li>芯片研发制造</li>
+                        <li>共享出行</li>
+                        <li>智慧城市（To G项目）</li>
+                        <li>云服务</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>🛠️ 技术工具</h3>
+                    <ul class="skill-list">
+                        <li>Python、pandas、numpy</li>
+                        <li>MySQL数据库</li>
+                        <li>BI工具（Power BI、FineBI）</li>
+                        <li>财务软件、ERP系统</li>
+                        <li>财务信息化建设</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026.01 - 至今</div>
+                    <h3 class="timeline-title">财务经理</h3>
+                    <p class="timeline-company">字节跳动</p>
+                    <p class="timeline-desc">负责全面预算管理、财务分析与决策、合规风险控制、项目协同、资金管理、税务风险控制。设计业财融合财务管理制度，对接银行外汇业务，为业务争取所得税减免，建立内部控制基础，确保审计顺利完成。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021.11 - 2025.07</div>
+                    <h3 class="timeline-title">事业部财务负责人</h3>
+                    <p class="timeline-company">千寻位置网络有限公司</p>
+                    <p class="timeline-desc">主导7大事业部财务BP工作，累计降本超700万元。服务BMW等国际车企，管控3000万芯片政府补贴项目（到账率100%），财务信息化覆盖率达80%。输出车型盈利模型，推动1个亏损项目扭亏（年增利润180万），核心硬件单台降本4500元（年降90万）。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2017.12 - 2021.01</div>
+                    <h3 class="timeline-title">会计</h3>
+                    <p class="timeline-company">中国电子科技集团公司第五十一研究所</p>
+                    <p class="timeline-desc">负责合并财务报表编制、预算制作与执行分析、职工薪酬、国资委报表、项目审价与审计、内部控制手册更新、财务信息化推行。获得"2020年优秀党员"荣誉（全单位仅6名），连续三年部门考核优秀。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">精选项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🚗 智能驾驶项目</h3>
+                    <p>服务BMW、蔚来、小鹏等国际车企，输出财务可行性分析，助力拿下超2亿合同。建"研发里程碑-核算"机制，项目毛利率稳定22%+。通过供应商议价实现核心硬件单台降本4500元（年降90万），搭建事业部预算体系，偏差率从18%→5%，年省120万。</p>
+                    <div class="project-stats">
+                        <span class="project-stat">合同金额：2亿+</span>
+                        <span class="project-stat">毛利率：22%+</span>
+                        <span class="project-stat">年降成本：90万</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>💎 芯片补贴项目</h3>
+                    <p>管控3000万芯片政府补贴项目，定研发费用资本化标准，核算准确率100%，全流程对接补贴项目，到账率100%，规避合规风险。搭芯片设备管控体系，上线资产系统，闲置率从25%降至5%，盘活资产约80万。</p>
+                    <div class="project-stats">
+                        <span class="project-stat">补贴金额：3000万</span>
+                        <span class="project-stat">到账率：100%</span>
+                        <span class="project-stat">盘活资产：80万</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>📉 降本增效项目</h3>
+                    <p>累计降本超700万元，包括产品降本、供应链降本、资金计划优化等。产品核心硬件单台降本4500元，解决方案降本约260万元，供应链降本约320万元。查出供应链腐败问题一例，防止不可估量损失。</p>
+                    <div class="project-stats">
+                        <span class="project-stat">累计降本：700万+</span>
+                        <span class="project-stat">供应链降本：320万</span>
+                        <span class="project-stat">产品降本：90-150万/年</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>📊 财务信息化项目</h3>
+                    <p>搭建财务信息化体系，财务信息化覆盖率80%，适配财务BP、财务经理等岗位全场景需求。设计业财融合系统，优化财务流程，降低业务数据传递时间，为管理层决策提供及时财务数据。</p>
+                    <div class="project-stats">
+                        <span class="project-stat">信息化覆盖率：80%</span>
+                        <span class="project-stat">流程优化：20天→15天</span>
+                        <span class="project-stat">数据传递：实时</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>🎯 扭亏为盈项目</h3>
+                    <p>输出车型盈利模型、回款分析控制，推动1个亏损项目扭亏，年增利润180万。优化共享出行收入确认，准确率100%，回款缩短20天。审500+中英文合同，嵌入财税风险条款，24年节税约380万。</p>
+                    <div class="project-stats">
+                        <span class="project-stat">年增利润：180万</span>
+                        <span class="project-stat">回款缩短：20天</span>
+                        <span class="project-stat">节税：380万</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>🌐 智慧城市项目</h3>
+                    <p>设计To G项目"立项-补贴-回款"流程，助力2个项目获千万补贴。优化共享出行收入确认，准确率100%，回款缩短20天。制定政府项目、共享出行专属看板报表，降低业务数据传递时间，为管理层决策提供及时的财务数据。</p>
+                    <div class="project-stats">
+                        <span class="project-stat">获补贴：千万级</span>
+                        <span class="project-stat">收入确认准确率：100%</span>
+                        <span class="project-stat">回款缩短：20天</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">教育背景</h2>
+            <div class="education-item">
+                <h3>硕士研究生</h3>
+                <p class="degree">财务管理</p>
+                <p class="university">同济大学 | 上海</p>
+                <p class="education-achievements">
+                    <span>🏆 国家奖学金</span>
+                    <span>🏆 省级政府奖学金</span>
+                    <span>🏆 省级三好学生</span>
+                    <span>🏆 省级优秀毕业生</span>
+                    <span>⭐ 连续三年部门考核优秀</span>
+                    <span>⭐ 2020年优秀党员（全单位仅6名）</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization -->
+    <section class="data-section" id="achievements">
+        <div class="container">
+            <h2 class="section-title">业绩数据可视化</h2>
+            <div class="charts-grid">
+                <!-- Cost Reduction Chart -->
+                <div class="chart-card">
+                    <h3>累计降本趋势（万元）</h3>
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <span class="bar-label">产品降本</span>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 0%" data-width="15%">15万</div>
+                            </div>
+                            <span class="bar-label-right">90-150万/年</span>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-label">解决方案降本</span>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 0%" data-width="37%">37万</div>
+                            </div>
+                            <span class="bar-label-right">260万</span>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-label">供应链降本</span>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 0%" data-width="46%">46万</div>
+                            </div>
+                            <span class="bar-label-right">320万</span>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-label">资金优化</span>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 0%" data-width="10%">10万</div>
+                            </div>
+                            <span class="bar-label-right">130万/年</span>
+                        </div>
+                        <div class="bar-item">
+                            <span class="bar-label">项目税筹</span>
+                            <div class="bar-container">
+                                <div class="bar" style="width: 0%" data-width="28%">28万</div>
+                            </div>
+                            <span class="bar-label-right">380万</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Proficiency -->
+                <div class="chart-card">
+                    <h3>专业技能熟练度</h3>
+                    <div class="skill-progress-item">
+                        <div class="skill-progress-header">
+                            <span>财务BP / 财务分析</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: 0%" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-progress-item">
+                        <div class="skill-progress-header">
+                            <span>预算管理</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: 0%" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-progress-item">
+                        <div class="skill-progress-header">
+                            <span>合同审核 / 税务筹划</span>
+                            <span>925%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: 0%" data-width="92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-progress-item">
+                        <div class="skill-progress-header">
+                            <span>资金管理</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: 0%" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-progress-item">
+                        <div class="skill-progress-header">
+                            <span>财务信息化</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: 0%" data-width="85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-progress-item">
+                        <div class="skill-progress-header">
+                            <span>Python / 数据分析</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress-fill" style="width: 0%" data-width="80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">联系方式</h2>
+            <div class="contact-content">
+                <p>期待与您的合作</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>📞 电话</h4>
+                        <p>16601811881</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>✉️ 邮箱</h4>
+                        <p>baogaolong@alumni.tongji.edu.cn</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📍 地区</h4>
+                        <p>上海</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 包高拢 版权所有</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animate bars and progress bars on scroll
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate bars
+                    entry.target.querySelectorAll('.bar').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+
+                    // Animate progress bars
+                    entry.target.querySelectorAll('.skill-progress-fill').forEach(fill => {
+                        fill.style.width = fill.getAttribute('data-width');
+                    });
+
+                    // Stop observing once animated
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe charts section
+        const chartsSection = document.querySelector('.data-section');
+        if (chartsSection) {
+            observer.observe(chartsSection);
+        }
+    </script>
+</body>
+</html>
