@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>包高拢 | 财务BP经理 - 可视化简历</title>
+<title>包高拢 | 财务BP经理简历</title>
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <style>
@@ -22,7 +22,16 @@ body{background:var(--bg);color:var(--text)}
 .menu a.active,.menu a:hover{color:var(--c1)}
 .menu a.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--c1);border-radius:2px}
 .wrap{max-width:1400px;margin:80px auto 30px;padding:0 15px;display:grid;grid-template-columns:320px 1fr;gap:20px}
-.side{display:flex;flex-direction:column;gap:20px}
+/* 关键优化：侧边栏固定定位 */
+.side{
+    position:sticky; /* 粘性定位 - 滚动时固定 */
+    top:80px;        /* 距离顶部80px（导航栏60px+20px间距） */
+    align-self:flex-start; /* 防止拉伸 */
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    height:calc(100vh - 100px); /* 视口高度 - 顶部/底部间距 */
+}
 .card{background:var(--card);border-radius:var(--rad);padding:24px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards}
 .card:nth-child(1){animation-delay:.1s}
 .card:nth-child(2){animation-delay:.2s}
@@ -35,7 +44,7 @@ body{background:var(--bg);color:var(--text)}
 .contact .item{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--gray)}
 .contact .item i{color:var(--c1);width:16px}
 .main{display:flex;flex-direction:column;gap:20px}
-.sec{background:var(--card);border-radius:var(--rad);padding:28px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards}
+.sec{background:var(--card);border-radius:var(--rad);padding:28px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;scroll-margin-top:80px} /* 锚点滚动偏移 */
 .sec:nth-child(1){animation-delay:.3s}
 .sec:nth-child(2){animation-delay:.4s}
 .sec:nth-child(3){animation-delay:.5s}
@@ -92,8 +101,10 @@ body{background:var(--bg);color:var(--text)}
     border:1px solid var(--line);
     overflow:hidden;
 }
+/* 移动端适配 */
 @media(max-width:1024px){
     .wrap{grid-template-columns:1fr}
+    .side{position:static;height:auto;margin-bottom:20px} /* 移动端取消固定 */
     .data-row{grid-template-columns:repeat(2,1fr)}
     .chart-row{grid-template-columns:1fr}
     .advantage-grid{grid-template-columns:repeat(2,1fr)}
@@ -162,7 +173,7 @@ body{background:var(--bg);color:var(--text)}
         <section id="advantage" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-star"></i> 核心优势（竞争力）</div></div>
             <div class="advantage-grid">
-                <div class="adv-card"><i class="fa-solid fa-certificate"></i><h4>高端证书</h4><p>注册税务师、中级会计师、HKICPA</p></div>
+                <div class="adv-card"><i class="fa-solid fa-certificate"></i><h4>高端证书</h4><p>注册税务师、中级会计师、HKICPA-associatelevel</p></div>
                 <div class="adv-card"><i class="fa-solid fa-handshake"></i><h4>业财融合</h4><p>预算/分析/成本/风控/资金全流程</p></div>
                 <div class="adv-card"><i class="fa-solid fa-microchip"></i><h4>行业深耕</h4><p>芯片/智驾/ToB/ToG/ToC</p></div>
                 <div class="adv-card"><i class="fa-solid fa-robot"></i><h4>数字化能力</h4><p>AI+Python+数据分析+财务建模</p></div>
@@ -311,7 +322,37 @@ function initResumePreview() {
     });
 }
 
-// 导航栏激活逻辑
+// 核心优化：滚动时导航栏自动高亮
+function initScrollSpy() {
+    // 获取所有导航链接和对应板块
+    const navLinks = document.querySelectorAll('.menu a');
+    const sections = document.querySelectorAll('.sec');
+    
+    // 滚动监听
+    window.addEventListener('scroll', function() {
+        let currentSectionId = '';
+        
+        // 遍历所有板块，判断当前可视区域的板块
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // 滚动位置超过板块顶部80px（导航栏高度）时，判定为当前板块
+            if (window.scrollY >= (sectionTop - 80) && window.scrollY < (sectionTop + sectionHeight - 80)) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+        
+        // 更新导航高亮状态
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+}
+
+// 导航栏点击逻辑（保留）
 function initNavActive() {
     document.querySelectorAll('.menu a').forEach(a=>{
         a.addEventListener('click',()=>{
@@ -326,6 +367,7 @@ window.addEventListener('load', function() {
     initCharts();
     initResumePreview();
     initNavActive();
+    initScrollSpy(); // 新增：初始化滚动监听
 });
 
 // 窗口大小变化时重置图表尺寸
