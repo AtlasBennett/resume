@@ -3,91 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>包高拢 | 财务BP经理</title>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<title>包高拢 | 财务BP经理 - 可视化简历</title>
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-:root{--c1:#165DFF;--bg:#f5f7fa;--card:#fff;--text:#333;--gray:#666}
-body{background:var(--bg);color:var(--text);line-height:1.6}
-.wrap{max-width:900px;margin:30px auto;padding:0 15px}
-.card{background:var(--card);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+:root{
+    --c1:#165DFF;--c2:#0FC6C2;--c3:#FF7D00;--c4:#00B42A;--c5:#F53F3F;
+    --bg:#F7F8FA;--card:#fff;--text:#1D2129;--gray:#4E5969;--line:#E5E6EB;
+    --shadow:0 4px 20px rgba(0,0,0,0.08);--rad:12px;
+}
+body{background:var(--bg);color:var(--text)}
+.navbar{position:fixed;top:0;left:0;width:100%;background:var(--card);box-shadow:var(--shadow);z-index:999;padding:0 20px}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-size:17px;font-weight:600;color:var(--c1);display:flex;align-items:center;gap:8px}
+.menu{display:flex;gap:28px}
+.menu a{color:var(--gray);text-decoration:none;font-weight:500;padding:8px 0;position:relative;transition:.3s}
+.menu a.active,.menu a:hover{color:var(--c1)}
+.menu a.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--c1);border-radius:2px}
+.wrap{max-width:1400px;margin:80px auto 30px;padding:0 15px;display:grid;grid-template-columns:320px 1fr;gap:20px}
+.side{
+    position:-webkit-sticky;
+    position:sticky;
+    top:80px;
+    align-self:flex-start;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    height:calc(100vh - 100px);
+}
+.card{background:var(--card);border-radius:var(--rad);padding:24px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards}
+.card:nth-child(1){animation-delay:.1s}
+.profile{text-align:center}
 .avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 16px;overflow:hidden;border:3px solid var(--c1)}
 .avatar img{width:100%;height:100%;object-fit:cover}
-.name{text-align:center;font-size:26px;font-weight:700;margin-bottom:8px}
-.post{text-align:center;color:var(--c1);font-size:17px;margin-bottom:16px}
-.info{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;color:var(--gray);margin-bottom:20px}
-.info span{display:flex;align-items:center;gap:6px}
-h2{font-size:19px;color:var(--c1);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee}
-.item{margin-bottom:12px}
-.item h4{font-weight:600}
-.item p{color:var(--gray)}
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-.tags span{background:#f0f3ff;color:#333;padding:6px 12px;border-radius:20px;font-size:14px}
-.down{display:block;background:var(--c1);color:#fff;text-align:center;padding:14px;border-radius:12px;text-decoration:none;font-weight:500;margin-top:10px}
+.name{font-size:24px;font-weight:700;margin-bottom:8px}
+.job{color:var(--gray);margin-bottom:20px}
+.contact{text-align:left;margin-top:16px}
+.contact .item{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--gray)}
+.contact .item i{color:var(--c1);width:16px}
+.main{display:flex;flex-direction:column;gap:20px}
+.sec{background:var(--card);border-radius:var(--rad);padding:28px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;scroll-margin-top:80px}
+.sec:nth-child(1){animation-delay:.3s}
+.sec:nth-child(2){animation-delay:.4s}
+.sec:nth-child(3){animation-delay:.5s}
+.sec:nth-child(4){animation-delay:.6s}
+.sec:nth-child(5){animation-delay:.7s}
+.sec:nth-child(6){animation-delay:.8s}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.sec-title{font-size:20px;font-weight:600;color:var(--c1);display:flex;align-items:center;gap:10px}
+.data-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.data-box{padding:24px;border-radius:var(--rad);color:#fff;text-align:center;transition:.3s}
+.data-box:hover{transform:translateY(-4px)}
+.data-box:nth-child(1){background:linear-gradient(135deg,#165DFF,#0E42D2)}
+.data-box:nth-child(2){background:linear-gradient(135deg,#0FC6C2,#0AA8A8)}
+.data-box:nth-child(3){background:linear-gradient(135deg,#FF7D00,#E67000)}
+.data-box:nth-child(4){background:linear-gradient(135deg,#00B42A,#009A23)}
+.data-val{font-size:32px;font-weight:700;margin-bottom:8px}
+.data-lab{font-size:14px;opacity:.95}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.chart{width:100%;height:320px;border-radius:var(--rad)}
+.time{position:relative;padding-left:32px}
+.time::before{content:"";position:absolute;left:6px;top:0;height:100%;width:2px;background:var(--line)}
+.time-item{position:relative;margin-bottom:28px}
+.time-item::before{content:"";position:absolute;left:-26px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--c1);animation:pulse 2s infinite}
+.time-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.time-com{font-weight:600;color:var(--c1)}
+.time-date{color:var(--gray);font-size:14px}
+.time-job{font-weight:500;margin-bottom:8px}
+.time-item ul{padding-left:20px;color:var(--gray)}
+.time-item li{margin-bottom:6px}
+.grid-4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.small-card{padding:20px;border:1px solid var(--line);border-radius:var(--rad);transition:.3s}
+.small-card:hover{transform:translateY(-4px);border-color:var(--c1)}
+.small-card h3{color:var(--c1);margin-bottom:12px;font-size:16px}
+.small-card p,.small-card li{color:var(--gray);margin-bottom:6px}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.tag{background:var(--bg);color:var(--gray);padding:8px 14px;border-radius:20px;font-size:14px;transition:.3s}
+.tag:hover{background:var(--c1);color:#fff;transform:scale(1.05)}
+.advantage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.adv-card{background:var(--bg);padding:20px;border-radius:var(--rad);text-align:center;border:1px solid var(--line);transition:.3s}
+.adv-card:hover{transform:translateY(-4px);border-color:var(--c1)}
+.adv-card i{font-size:24px;color:var(--c1);margin-bottom:12px}
+.adv-card h4{font-weight:600;margin-bottom:8px}
+.adv-card p{color:var(--gray);font-size:14px}
+.pdf-footer{background:var(--card);border-radius:var(--rad);padding:28px;text-align:center;box-shadow:var(--shadow)}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;background:var(--c1);color:#fff;padding:14px 28px;border-radius:var(--rad);text-decoration:none;font-weight:500;margin:8px;transition:.3s;cursor:pointer;border:none;outline:none;font-size:16px}
+.pdf-btn:hover{background:#0E42D2;transform:translateY(-2px)}
+.resume-preview{
+    width:100%;
+    height:700px;
+    border-radius:var(--rad);
+    margin-top:20px;
+    display:none;
+    border:1px solid var(--line);
+    overflow:hidden;
+}
+@media(max-width:1024px){
+    .wrap{grid-template-columns:1fr}
+    .side{position:static;height:auto;margin-bottom:20px}
+    .data-row{grid-template-columns:repeat(2,1fr)}
+    .chart-row{grid-template-columns:1fr}
+    .advantage-grid{grid-template-columns:repeat(2,1fr)}
+    .resume-preview{height:500px}
+}
+@media(max-width:768px){
+    .menu{display:none}
+    .resume-preview{height:400px}
+}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,93,255,0.4)}70%{box-shadow:0 0 0 10px rgba(22,93,255,0)}100%{box-shadow:0 0 0 0 rgba(22,93,255,0.4)}}
 </style>
 </head>
 <body>
 
-<div class="wrap">
-    <div class="card">
-        <div class="avatar">
-            <img src="image.png" alt="头像">
-        </div>
-        <div class="name">包高拢</div>
-        <div class="post">财务BP经理 | 业财融合专家</div>
-        <div class="info">
-            <span><i class="fa-solid fa-phone"></i> 16601811811</span>
-            <span><i class="fa-solid fa-envelope"></i> baogaolong@alumni.tongji.edu.cn</span>
-            <span><i class="fa-solid fa-location-dot"></i> 上海</span>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>工作经历</h2>
-        <div class="item">
-            <h4>北京字节跳动 - 财务经理（上海）</h4>
-            <p>2026.01-至今</p>
-        </div>
-        <div class="item">
-            <h4>千寻位置 - 事业部财务负责人 / BP经理</h4>
-            <p>2021.11-2025.07</p>
-        </div>
-        <div class="item">
-            <h4>中国电科51所 - 报表主管会计</h4>
-            <p>2017.12-2021.01</p>
+<div class="navbar">
+    <div class="nav-inner">
+        <div class="logo"><i class="fa-solid fa-user-tie"></i> 包高拢 | 财务BP经理</div>
+        <div class="menu">
+            <a href="#overview" class="active">总览</a>
+            <a href="#advantage">核心优势</a>
+            <a href="#experience">工作经历</a>
+            <a href="#projects">项目业绩</a>
+            <a href="#skills">能力模型</a>
+            <a href="#edu">教育证书</a>
         </div>
     </div>
-
-    <div class="card">
-        <h2>核心业绩</h2>
-        <div class="item">
-            <p>✅ 累计降本 700万+</p>
-            <p>✅ 助力合同金额 2亿+</p>
-            <p>✅ 政府补贴 100% 到账</p>
-            <p>✅ 年度节税 380万</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>专业能力</h2>
-        <div class="tags">
-            <span>财务BP</span><span>业财融合</span><span>预算管理</span><span>成本管控</span>
-            <span>数据分析</span><span>税务筹划</span><span>团队管理</span>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>教育与证书</h2>
-        <div class="item">
-            <h4>同济大学 - 会计学硕士</h4>
-            <p>注册税务师、中级会计师、HKICPA</p>
-        </div>
-    </div>
-
-    <a href="resume.docx" class="down" download>
-        <i class="fa-solid fa-download"></i> 下载完整简历
-    </a>
 </div>
 
+<div class="wrap">
+    <div class="side">
+        <div class="card profile">
+            <div class="avatar">
+                <img src="image.png" alt="头像">
+            </div>
+            <div class="name">包高拢</div>
+            <div class="job">财务BP经理 | 业财融合专家</div>
+            <div class="contact">
+                <div class="item"><i class="fa-solid fa-phone"></i><span>16601811811</span></div>
+                <div class="item"><i class="fa-solid fa-envelope"></i><span>baogaolong@alumni.tongji.edu.cn</span></div>
+                <div class="item"><i class="fa-solid fa-location-dot"></i><span>上海</span></div>
+                <div class="item"><i class="fa-solid fa-briefcase"></i><span>8年9个月经验</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <section id="overview" class="sec">
+            <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-chart-pie"></i> 简历总览</div></div>
+            <div class="data-row">
+                <div class="data-box"><div class="data-val">8.9年</div><div class="data-lab">财务工作年限</div></div>
+                <div class="data-box"><div class="data-val">700万+</div><div class="data-lab">累计降本金额</div></div>
+                <div class="data-box"><div class="data-val">2亿+</div><div class="data-lab">助力合同金额</div></div>
+                <div class="data-box"><div class="data-val">100%</div><div class="data-lab">政府补贴到账率</div></div>
+            </div>
+            <div class="chart-row">
+                <div class="chart" id="c1"></div>
+                <div class="chart" id="c2"></div>
+            </div>
+        </section>
+
+        <section id="advantage" class="sec">
+            <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-star"></i> 核心优势</div></div>
+            <div class="advantage-grid">
+                <div class="adv-card"><i class="fa-solid fa-certificate"></i><h4>高端证书</h4><p>注册税务师、中级会计师、HKICPA</p></div>
+                <div class="adv-card"><i class="fa-solid fa-handshake"></i><h4>业财融合</h4><p>预算/分析/成本/风控/资金全流程</p></div>
+                <div class="adv-card"><i class="fa-solid fa-microchip"></i><h4>行业深耕</h4><p>芯片/智驾/ToB/ToG/ToC</p></div>
+                <div class="adv-card"><i class="fa-solid fa-robot"></i><h4>数字化能力</h4><p>AI+Python+数据分析+财务建模</p></div>
+                <div class="adv-card"><i class="fa-solid fa-coins"></i><h4>业绩突出</h4><p>降本700万+，助力2亿+合同</p></div>
+                <div class="adv-card"><i class="fa-solid fa-user-tie"></i><h4>管理经验</h4><p>团队管理+制度搭建+审计风控</p></div>
+            </div>
+        </section>
+
+        <section id="experience" class="sec">
+            <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-briefcase"></i> 工作经历</div></div>
+            <div class="time">
+                <div class="time-item">
+                    <div class="time-top"><div class="time-com">北京字节跳动</div><div class="time-date">2026.01-至今</div></div>
+                    <div class="time-job">财务经理（上海）</div>
+                    <ul><li>预算、分析、风控、业财协同、资金税务</li><li>搭建制度框架，打通外汇，争取所得税减免</li></ul>
+                </div>
+                <div class="time-item">
+                    <div class="time-top"><div class="time-com">千寻位置</div><div class="time-date">2021.11-2025.07</div></div>
+                    <div class="time-job">事业部财务负责人 / BP经理</div>
+                    <ul><li>7大事业部，智驾/芯片/车载/云服务</li><li>预算偏差18%→5%，硬件单台降本4500元</li></ul>
+                </div>
+                <div class="time-item">
+                    <div class="time-top"><div class="time-com">中国电科51所</div><div class="time-date">2017.12-2021.01</div></div>
+                    <div class="time-job">报表主管会计</div>
+                    <ul><li>合并报表、预算、成本、税务、资产、内控</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="sec">
+            <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-trophy"></i> 项目业绩</div></div>
+            <div class="grid-4">
+                <div class="small-card"><h3>智能驾驶项目</h3><ul><li>助力2亿+合同，毛利稳定22%+</li><li>核心硬件年降90万</li></ul></div>
+                <div class="small-card"><h3>芯片研发项目</h3><ul><li>3000万政府补贴，到账率100%</li><li>研发核算准确率100%</li></ul></div>
+                <div class="small-card"><h3>智慧出行项目</h3><ul><li>单车降本300元，规模化落地</li><li>月省10%运营成本</li></ul></div>
+                <div class="small-card"><h3>综合管理业绩</h3><ul><li>连续优秀绩效</li><li>供应链降本320万</li><li>年度节税380万</li></ul></div>
+            </div>
+        </section>
+
+        <section id="skills" class="sec">
+            <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-cubes"></i> 能力模型</div></div>
+            <div class="chart" id="c3"></div>
+            <div class="tags">
+                <span class="tag">财务BP</span><span class="tag">业财融合</span><span class="tag">预算管理</span><span class="tag">财务分析</span>
+                <span class="tag">成本管控</span><span class="tag">税务筹划</span><span class="tag">资金管理</span><span class="tag">风控合规</span>
+            </div>
+        </section>
+
+        <section id="edu" class="sec">
+            <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-graduation-cap"></i> 教育 & 证书</div></div>
+            <div class="grid-4">
+                <div class="small-card"><h3>教育经历</h3><p><strong>同济大学 | 会计学硕士</strong></p><p>优秀毕业生</p></div>
+                <div class="small-card"><h3>资格证书</h3><ul><li>中级会计师 | 注册税务师</li><li>HKICPA</li></ul></div>
+            </div>
+        </section>
+
+        <div class="pdf-footer">
+            <h2 style="margin-bottom:20px;color:var(--c1)">完整简历文档</h2>
+            <a href="resume.docx" class="pdf-btn" download>
+                <i class="fa-solid fa-download"></i> 下载简历文档
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function initCharts(){
+    var c1=echarts.init(document.getElementById('c1'));
+    c1.setOption({title:{text:'行业经验',left:'center'},xAxis:{type:'category',data:['智驾','芯片','ToB','ToG','ToC']},yAxis:{type:'value'},series:[{type:'bar',data:[5,4,5,4,3],itemStyle:{color:'#165DFF'}}]});
+    var c2=echarts.init(document.getElementById('c2'));
+    c2.setOption({title:{text:'核心技能',left:'center'},series:[{type:'pie',radius:['40%','70%'],data:[{value:95,name:'财务BP'},{value:92,name:'预算管理'},{value:90,name:'财务分析'},{value:88,name:'成本管控'},{value:90,name:'AI技能'},{value:90,name:'数据分析'}],color:['#165DFF','#0FC6C2','#FF7D00','#00B42A','#F53F3F','#722ED1']}]});
+    var c3=echarts.init(document.getElementById('c3'));
+    c3.setOption({title:{text:'综合能力',left:'center'},radar:{indicator:[{name:'业财融合',max:100},{name:'预算分析',max:100},{name:'成本管控',max:100},{name:'税务筹划',max:100},{name:'资金管理',max:100},{name:'团队管理',max:100},{name:'AI工作法',max:100},{name:'数据分析',max:100}]},series:[{type:'radar',data:[{value:[95,92,90,88,90,85,90,90],itemStyle:{color:'#165DFF'}}]}]});
+}
+window.addEventListener('load', function() { initCharts(); });
+window.addEventListener('resize',()=>{document.querySelectorAll('.chart').forEach(c=>{if(echarts.getInstanceByDom(c))echarts.getInstanceByDom(c).resize()})});
+</script>
 </body>
 </html>
