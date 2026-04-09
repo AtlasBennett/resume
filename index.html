@@ -10,7 +10,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 :root{
     --c1:#165DFF;--c2:#0FC6C2;--c3:#FF7D00;--c4:#00B42A;--c5:#F53F3F;
-    --bg:#F7F8FA;--card:#fff;--text:#1D2129;--gray:#4E5969;--line:#E5E6EB;
+    --bg:#F7F8FA;--card:#fff;--text:#1D2129;--gray:#4E569;--line:#E5E6EB;
     --shadow:0 4px 20px rgba(0,0,0,0.08);--rad:12px;
 }
 body{background:var(--bg);color:var(--text)}
@@ -21,7 +21,6 @@ body{background:var(--bg);color:var(--text)}
 .menu a{color:var(--gray);text-decoration:none;font-weight:500;padding:8px 0;position:relative;transition:.3s}
 .menu a.active,.menu a:hover{color:var(--c1)}
 .menu a.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--c1);border-radius:2px}
-
 .wrap{max-width:1400px;margin:80px auto 30px;padding:0 15px;display:grid;grid-template-columns:320px 1fr;gap:20px}
 .side{
     position:sticky;
@@ -42,7 +41,6 @@ body{background:var(--bg);color:var(--text)}
 .contact{text-align:left;margin-top:16px}
 .contact .item{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--gray)}
 .contact .item i{color:var(--c1);width:16px}
-
 .main{display:flex;flex-direction:column;gap:20px}
 .sec{background:var(--card);border-radius:var(--rad);padding:28px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;scroll-margin-top:80px}
 .sec:nth-child(1){animation-delay:.3s}
@@ -53,20 +51,17 @@ body{background:var(--bg);color:var(--text)}
 .sec:nth-child(6){animation-delay:.8s}
 .sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
 .sec-title{font-size:20px;font-weight:600;color:var(--c1);display:flex;align-items:center;gap:10px}
-
 .data-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
 .data-box{padding:24px;border-radius:var(--rad);color:#fff;text-align:center;transition:.3s}
 .data-box:hover{transform:translateY(-4px)}
 .data-box:nth-child(1){background:linear-gradient(135deg,#165DFF,#0E42D2)}
-.data-box:nth-child(2){background:linear-gradient(135deg,#0FC6C2,#0AA8A2)}
+.data-box:nth-child(2){background:linear-gradient(135deg,#0FC6C2,#0AA8A8)}
 .data-box:nth-child(3){background:linear-gradient(135deg,#FF7D00,#E67000)}
 .data-box:nth-child(4){background:linear-gradient(135deg,#00B42A,#009A23)}
 .data-val{font-size:32px;font-weight:700;margin-bottom:8px}
 .data-lab{font-size:14px;opacity:.95}
-
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .chart{width:100%;height:320px;border-radius:var(--rad)}
-
 .time{position:relative;padding-left:32px}
 .time::before{content:"";position:absolute;left:6px;top:0;height:100%;width:2px;background:var(--line)}
 .time-item{position:relative;margin-bottom:28px}
@@ -77,34 +72,23 @@ body{background:var(--bg);color:var(--text)}
 .time-job{font-weight:500;margin-bottom:8px}
 .time-item ul{padding-left:20px;color:var(--gray)}
 .time-item li{margin-bottom:6px}
-
 .grid-4{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .small-card{padding:20px;border:1px solid var(--line);border-radius:var(--rad);transition:.3s}
 .small-card:hover{transform:translateY(-4px);border-color:var(--c1)}
 .small-card h3{color:var(--c1);margin-bottom:12px;font-size:16px}
-
 .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .tag{background:var(--bg);color:var(--gray);padding:8px 14px;border-radius:20px;font-size:14px;transition:.3s}
 .tag:hover{background:var(--c1);color:#fff}
-
 .advantage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .adv-card{background:var(--bg);padding:20px;border-radius:var(--rad);text-align:center;border:1px solid var(--line)}
 .adv-card i{font-size:24px;color:var(--c1);margin-bottom:12px}
 .adv-card h4{font-weight:600;margin-bottom:8px}
-
 .pdf-footer{background:var(--card);border-radius:var(--rad);padding:28px;text-align:center;box-shadow:var(--shadow)}
 .pdf-btn{display:inline-flex;align-items:center;gap:8px;background:var(--c1);color:#fff;padding:14px 28px;border-radius:var(--rad);text-decoration:none;font-weight:500}
-
+.resume-preview{width:100%;height:700px;border-radius:var(--rad);margin-top:20px;display:none;border:1px solid var(--line)}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-@media(max-width:1024px){
-    .wrap{grid-template-columns:1fr}
-    .side{position:static;height:auto}
-    .data-row{grid-template-columns:repeat(2,1fr)}
-    .advantage-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:768px){
-    .menu{display:none}
-}
+@media(max-width:1024px){.wrap{grid-template-columns:1fr}.side{position:static;height:auto}.data-row{grid-template-columns:repeat(2,1fr)}.advantage-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.menu{display:none}}
 </style>
 </head>
 <body>
@@ -126,9 +110,7 @@ body{background:var(--bg);color:var(--text)}
 <div class="wrap">
     <div class="side">
         <div class="card profile">
-            <div class="avatar">
-                <img src="image.png" alt="头像">
-            </div>
+            <div class="avatar"><img src="image.png" alt="头像"></div>
             <div class="name">包高拢</div>
             <div class="job">财务BP经理 | 业财融合专家</div>
             <div class="contact">
@@ -173,25 +155,17 @@ body{background:var(--bg);color:var(--text)}
                 <div class="time-item">
                     <div class="time-top"><div class="time-com">北京字节跳动</div><div class="time-date">2026.01-至今</div></div>
                     <div class="time-job">财务经理（上海）</div>
-                    <ul>
-                        <li>预算、分析、风控、业财协同、资金税务</li>
-                        <li>搭建制度框架，打通外汇，争取所得税减免</li>
-                    </ul>
+                    <ul><li>预算、分析、风控、业财协同、资金税务</li><li>搭建制度框架，打通外汇，争取所得税减免</li></ul>
                 </div>
                 <div class="time-item">
                     <div class="time-top"><div class="time-com">千寻位置</div><div class="time-date">2021.11-2025.07</div></div>
                     <div class="time-job">事业部财务负责人 / BP经理</div>
-                    <ul>
-                        <li>7大事业部，智驾/芯片/车载/云服务</li>
-                        <li>预算偏差18%→5%，硬件单台降本4500元</li>
-                    </ul>
+                    <ul><li>7大事业部，智驾/芯片/车载/云服务</li><li>预算偏差18%→5%，硬件单台降本4500元</li></ul>
                 </div>
                 <div class="time-item">
                     <div class="time-top"><div class="time-com">中国电科51所</div><div class="time-date">2017.12-2021.01</div></div>
                     <div class="time-job">报表主管会计</div>
-                    <ul>
-                        <li>合并报表、预算、成本、税务、资产、内控</li>
-                    </ul>
+                    <ul><li>合并报表、预算、成本、税务、资产、内控</li></ul>
                 </div>
             </div>
         </section>
@@ -210,16 +184,8 @@ body{background:var(--bg);color:var(--text)}
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-cubes"></i> 能力模型</div></div>
             <div class="chart" id="c3"></div>
             <div class="tags">
-                <span class="tag">财务BP</span>
-                <span class="tag">业财融合</span>
-                <span class="tag">预算管理</span>
-                <span class="tag">财务分析</span>
-                <span class="tag">成本管控</span>
-                <span class="tag">税务筹划</span>
-                <span class="tag">资金管理</span>
-                <span class="tag">风控合规</span>
-                <span class="tag">团队管理</span>
-                <span class="tag">数据分析</span>
+                <span class="tag">财务BP</span><span class="tag">业财融合</span><span class="tag">预算管理</span><span class="tag">财务分析</span>
+                <span class="tag">成本管控</span><span class="tag">税务筹划</span><span class="tag">资金管理</span><span class="tag">风控合规</span>
             </div>
         </section>
 
@@ -232,32 +198,44 @@ body{background:var(--bg);color:var(--text)}
         </section>
 
         <div class="pdf-footer">
-            <a href="resume.docx" class="pdf-btn" download>
-                <i class="fa-solid fa-download"></i> 下载完整简历文档
-            </a>
+            <a href="resume.docx" class="pdf-btn" download><i class="fa-solid fa-download"></i> 下载完整简历文档</a>
         </div>
     </div>
 </div>
 
 <script>
 window.onload = function(){
-    var c1=echarts.init(document.getElementById('c1'));
-    c1.setOption({title:{text:'行业经验'},xAxis:{data:['智驾','芯片','ToB','ToG','ToC']},yAxis:{},series:[{data:[5,4,5,4,3],type:'bar',itemStyle:{color:'#165DFF'}}]});
+    // 图表
+    var c1 = echarts.init(document.getElementById('c1'));
+    c1.setOption({title:{text:'行业经验'},xAxis:{data:['智驾','芯片','ToB','ToG','ToC']},yAxis:{},series:[{data:[5,4,5,4,3],type:'bar',color:'#165DFF'}]});
 
-    var c2=echarts.init(document.getElementById('c2'));
+    var c2 = echarts.init(document.getElementById('c2'));
     c2.setOption({title:{text:'核心技能'},series:[{type:'pie',radius:['40%','70%'],data:[
         {value:95,name:'财务BP'},{value:92,name:'预算管理'},{value:90,name:'财务分析'},
         {value:88,name:'成本管控'},{value:90,name:'AI技能'},{value:90,name:'数据分析'}
     ]}]});
 
-    var c3=echarts.init(document.getElementById('c3'));
+    var c3 = echarts.init(document.getElementById('c3'));
     c3.setOption({title:{text:'综合能力'},radar:{indicator:[
         {name:'业财融合',max:100},{name:'预算分析',max:100},{name:'成本管控',max:100},
         {name:'税务筹划',max:100},{name:'资金管理',max:100},{name:'团队管理',max:100},
         {name:'AI工作法',max:100},{name:'数据分析',max:100}
-    ]},series:[{type:'radar',data:[{value:[95,92,90,88,90,85,90,90]}]}]});
+    ]},series:[{type:'radar',data:[{value:[95,92,90,88,90,85,90,90],color:'#165DFF'}]}]});
 
-    window.addEventListener('resize',function(){c1.resize();c2.resize();c3.resize();})
+    // ✅ 导航滚动自动高亮
+    const sections = document.querySelectorAll('.sec');
+    const navLinks = document.querySelectorAll('.menu a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+            const top = sec.offsetTop - 120;
+            if (window.scrollY >= top) current = sec.id;
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+        });
+    });
 }
 </script>
 </body>
