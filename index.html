@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>包高拢 | 财务BP经理简历</title>
+<title>包高拢 | 财务BP经理 - 可视化简历</title>
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <style>
@@ -22,19 +22,17 @@ body{background:var(--bg);color:var(--text)}
 .menu a.active,.menu a:hover{color:var(--c1)}
 .menu a.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--c1);border-radius:2px}
 .wrap{max-width:1400px;margin:80px auto 30px;padding:0 15px;display:grid;grid-template-columns:320px 1fr;gap:20px}
-/* 关键优化：侧边栏固定定位 */
 .side{
-    position:sticky; /* 粘性定位 - 滚动时固定 */
-    top:80px;        /* 距离顶部80px（导航栏60px+20px间距） */
-    align-self:flex-start; /* 防止拉伸 */
+    position:sticky;
+    top:80px;
+    align-self:flex-start;
     display:flex;
     flex-direction:column;
     gap:20px;
-    height:calc(100vh - 100px); /* 视口高度 - 顶部/底部间距 */
+    height:calc(100vh - 100px);
 }
 .card{background:var(--card);border-radius:var(--rad);padding:24px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards}
 .card:nth-child(1){animation-delay:.1s}
-.card:nth-child(2){animation-delay:.2s}
 .profile{text-align:center}
 .avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 16px;overflow:hidden;border:3px solid var(--c1)}
 .avatar img{width:100%;height:100%;object-fit:cover}
@@ -44,7 +42,7 @@ body{background:var(--bg);color:var(--text)}
 .contact .item{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--gray)}
 .contact .item i{color:var(--c1);width:16px}
 .main{display:flex;flex-direction:column;gap:20px}
-.sec{background:var(--card);border-radius:var(--rad);padding:28px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;scroll-margin-top:80px} /* 锚点滚动偏移 */
+.sec{background:var(--card);border-radius:var(--rad);padding:28px;box-shadow:var(--shadow);opacity:0;transform:translateY(20px);animation:fadeUp .6s forwards;scroll-margin-top:80px}
 .sec:nth-child(1){animation-delay:.3s}
 .sec:nth-child(2){animation-delay:.4s}
 .sec:nth-child(3){animation-delay:.5s}
@@ -91,7 +89,6 @@ body{background:var(--bg);color:var(--text)}
 .pdf-footer{background:var(--card);border-radius:var(--rad);padding:28px;text-align:center;box-shadow:var(--shadow)}
 .pdf-btn{display:inline-flex;align-items:center;gap:8px;background:var(--c1);color:#fff;padding:14px 28px;border-radius:var(--rad);text-decoration:none;font-weight:500;margin:8px;transition:.3s;cursor:pointer;border:none;outline:none;font-size:16px}
 .pdf-btn:hover{background:#0E42D2;transform:translateY(-2px)}
-/* 预览区域样式 */
 .resume-preview{
     width:100%;
     height:700px;
@@ -101,10 +98,9 @@ body{background:var(--bg);color:var(--text)}
     border:1px solid var(--line);
     overflow:hidden;
 }
-/* 移动端适配 */
 @media(max-width:1024px){
     .wrap{grid-template-columns:1fr}
-    .side{position:static;height:auto;margin-bottom:20px} /* 移动端取消固定 */
+    .side{position:static;height:auto;margin-bottom:20px}
     .data-row{grid-template-columns:repeat(2,1fr)}
     .chart-row{grid-template-columns:1fr}
     .advantage-grid{grid-template-columns:repeat(2,1fr)}
@@ -119,8 +115,6 @@ body{background:var(--bg);color:var(--text)}
 </style>
 </head>
 <body>
-
-<!-- 导航 -->
 <div class="navbar">
     <div class="nav-inner">
         <div class="logo"><i class="fa-solid fa-user-tie"></i> 包高拢 | 财务BP经理</div>
@@ -134,8 +128,6 @@ body{background:var(--bg);color:var(--text)}
         </div>
     </div>
 </div>
-
-<!-- 主体 -->
 <div class="wrap">
     <div class="side">
         <div class="card profile">
@@ -152,9 +144,7 @@ body{background:var(--bg);color:var(--text)}
             </div>
         </div>
     </div>
-
     <div class="main">
-        <!-- 总览 -->
         <section id="overview" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-chart-pie"></i> 简历总览</div></div>
             <div class="data-row">
@@ -168,12 +158,10 @@ body{background:var(--bg);color:var(--text)}
                 <div class="chart" id="c2"></div>
             </div>
         </section>
-
-        <!-- 核心优势（可视化） -->
         <section id="advantage" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-star"></i> 核心优势（竞争力）</div></div>
             <div class="advantage-grid">
-                <div class="adv-card"><i class="fa-solid fa-certificate"></i><h4>高端证书</h4><p>注册税务师、中级会计师、HKICPA-associatelevel</p></div>
+                <div class="adv-card"><i class="fa-solid fa-certificate"></i><h4>高端证书</h4><p>注册税务师、中级会计师、HKICPA</p></div>
                 <div class="adv-card"><i class="fa-solid fa-handshake"></i><h4>业财融合</h4><p>预算/分析/成本/风控/资金全流程</p></div>
                 <div class="adv-card"><i class="fa-solid fa-microchip"></i><h4>行业深耕</h4><p>芯片/智驾/ToB/ToG/ToC</p></div>
                 <div class="adv-card"><i class="fa-solid fa-robot"></i><h4>数字化能力</h4><p>AI+Python+数据分析+财务建模</p></div>
@@ -181,8 +169,6 @@ body{background:var(--bg);color:var(--text)}
                 <div class="adv-card"><i class="fa-solid fa-user-tie"></i><h4>管理经验</h4><p>团队管理+制度搭建+审计风控</p></div>
             </div>
         </section>
-
-        <!-- 经历 -->
         <section id="experience" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-briefcase"></i> 工作经历</div></div>
             <div class="time">
@@ -203,8 +189,6 @@ body{background:var(--bg);color:var(--text)}
                 </div>
             </div>
         </section>
-
-        <!-- 业绩 -->
         <section id="projects" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-trophy"></i> 项目业绩</div></div>
             <div class="grid-4">
@@ -214,8 +198,6 @@ body{background:var(--bg);color:var(--text)}
                 <div class="small-card"><h3>综合管理业绩</h3><ul><li>连续优秀绩效</li><li>供应链降本320万</li><li>年度节税380万</li></ul></div>
             </div>
         </section>
-
-        <!-- 能力 -->
         <section id="skills" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-cubes"></i> 能力模型</div></div>
             <div class="chart" id="c3"></div>
@@ -226,8 +208,6 @@ body{background:var(--bg);color:var(--text)}
                 <span class="tag">芯片</span><span class="tag">智能驾驶</span><span class="tag">ToB/ToG/ToC</span>
             </div>
         </section>
-
-        <!-- 教育 -->
         <section id="edu" class="sec">
             <div class="sec-head"><div class="sec-title"><i class="fa-solid fa-graduation-cap"></i> 教育 & 证书</div></div>
             <div class="grid-4">
@@ -235,114 +215,56 @@ body{background:var(--bg);color:var(--text)}
                 <div class="small-card"><h3>资格证书</h3><ul><li>中级会计师 | 注册税务师</li><li>HKICPA（Associate十门）</li><li>英语六级 | 计算机二级</li></ul></div>
             </div>
         </section>
-
-        <!-- 文档底部（终极修复：在线查看+下载分离） -->
         <div class="pdf-footer">
             <h2 style="margin-bottom:20px;color:var(--c1)">完整简历文档</h2>
-            <!-- 在线查看按钮（触发预览） -->
             <button id="viewResumeBtn" class="pdf-btn">
                 <i class="fa-solid fa-file-word"></i> 在线查看完整简历
             </button>
-            <!-- 下载按钮（仅下载） -->
             <a href="科技互联网-智驾-芯片产研-toB&G&C等行业经验-财务BP经理__包高拢的简历.docx" download class="pdf-btn">
                 <i class="fa-solid fa-download"></i> 下载简历文档
             </a>
-            <!-- 在线预览容器 -->
             <iframe id="resumePreviewFrame" class="resume-preview" frameborder="0"></iframe>
         </div>
     </div>
 </div>
-
 <script>
-// 初始化图表
 function initCharts(){
-    // 行业经验图表
     var c1=echarts.init(document.getElementById('c1'));
-    c1.setOption({
-        title:{text:'行业经验',left:'center'},
-        xAxis:{type:'category',data:['智驾','芯片','ToB','ToG','ToC']},
-        yAxis:{type:'value'},
-        series:[{type:'bar',data:[5,4,5,4,3],itemStyle:{color:'#165DFF'}}]
-    });
-    
-    // 核心技能饼图
+    c1.setOption({title:{text:'行业经验',left:'center'},xAxis:{type:'category',data:['智驾','芯片','ToB','ToG','ToC']},yAxis:{type:'value'},series:[{type:'bar',data:[5,4,5,4,3],itemStyle:{color:'#165DFF'}}]});
     var c2=echarts.init(document.getElementById('c2'));
-    c2.setOption({
-        title:{text:'核心技能',left:'center'},
-        series:[{
-            type:'pie',radius:['40%','70%'],
-            data:[
-                {value:95,name:'财务BP'},{value:92,name:'预算管理'},{value:90,name:'财务分析'},
-                {value:88,name:'成本管控'},{value:90,name:'AI技能'},{value:90,name:'数据分析'}
-            ],
-            color:['#165DFF','#0FC6C2','#FF7D00','#00B42A','#F53F3F','#722ED1']
-        }]
-    });
-    
-    // 综合能力雷达图
+    c2.setOption({title:{text:'核心技能',left:'center'},series:[{type:'pie',radius:['40%','70%'],data:[{value:95,name:'财务BP'},{value:92,name:'预算管理'},{value:90,name:'财务分析'},{value:88,name:'成本管控'},{value:90,name:'AI技能'},{value:90,name:'数据分析'}],color:['#165DFF','#0FC6C2','#FF7D00','#00B42A','#F53F3F','#722ED1']}]});
     var c3=echarts.init(document.getElementById('c3'));
-    c3.setOption({
-        title:{text:'综合能力',left:'center'},
-        radar:{
-            indicator:[
-                {name:'业财融合',max:100},{name:'预算分析',max:100},{name:'成本管控',max:100},
-                {name:'税务筹划',max:100},{name:'资金管理',max:100},{name:'团队管理',max:100},
-                {name:'AI工作法',max:100},{name:'数据分析',max:100}
-            ]
-        },
-        series:[{
-            type:'radar',
-            data:[{value:[95,92,90,88,90,85,90,90],itemStyle:{color:'#165DFF'}}]
-        }]
-    });
+    c3.setOption({title:{text:'综合能力',left:'center'},radar:{indicator:[{name:'业财融合',max:100},{name:'预算分析',max:100},{name:'成本管控',max:100},{name:'税务筹划',max:100},{name:'资金管理',max:100},{name:'团队管理',max:100},{name:'AI工作法',max:100},{name:'数据分析',max:100}]},series:[{type:'radar',data:[{value:[95,92,90,88,90,85,90,90],itemStyle:{color:'#165DFF'}}]}]});
 }
-
-// 在线预览核心逻辑
 function initResumePreview() {
     const viewBtn = document.getElementById('viewResumeBtn');
     const previewFrame = document.getElementById('resumePreviewFrame');
-    // 简历文件的GitHub Pages地址
     const resumeFileUrl = 'https://AtlasBennett.github.io/resume/科技互联网-智驾-芯片产研-toB&G&C等行业经验-财务BP经理__包高拢的简历.docx';
-    // 微软在线文档预览服务地址（关键：实现docx在线预览）
     const onlinePreviewUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(resumeFileUrl)}`;
-
-    // 点击按钮切换预览状态
     viewBtn.addEventListener('click', function() {
         if (previewFrame.style.display === 'none' || previewFrame.style.display === '') {
-            // 显示预览并加载微软预览服务
             previewFrame.src = onlinePreviewUrl;
             previewFrame.style.display = 'block';
             this.innerHTML = '<i class="fa-solid fa-times"></i> 关闭简历预览';
         } else {
-            // 隐藏预览并清空iframe
             previewFrame.src = '';
             previewFrame.style.display = 'none';
             this.innerHTML = '<i class="fa-solid fa-file-word"></i> 在线查看完整简历';
         }
     });
 }
-
-// 核心优化：滚动时导航栏自动高亮
 function initScrollSpy() {
-    // 获取所有导航链接和对应板块
     const navLinks = document.querySelectorAll('.menu a');
     const sections = document.querySelectorAll('.sec');
-    
-    // 滚动监听
     window.addEventListener('scroll', function() {
         let currentSectionId = '';
-        
-        // 遍历所有板块，判断当前可视区域的板块
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            // 滚动位置超过板块顶部80px（导航栏高度）时，判定为当前板块
             if (window.scrollY >= (sectionTop - 80) && window.scrollY < (sectionTop + sectionHeight - 80)) {
                 currentSectionId = section.getAttribute('id');
             }
         });
-        
-        // 更新导航高亮状态
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSectionId}`) {
@@ -351,31 +273,12 @@ function initScrollSpy() {
         });
     });
 }
-
-// 导航栏点击逻辑（保留）
-function initNavActive() {
-    document.querySelectorAll('.menu a').forEach(a=>{
-        a.addEventListener('click',()=>{
-            document.querySelectorAll('.menu a').forEach(i=>i.classList.remove('active'));
-            a.classList.add('active');
-        });
-    });
-}
-
-// 页面加载完成后初始化所有功能
 window.addEventListener('load', function() {
     initCharts();
     initResumePreview();
-    initNavActive();
-    initScrollSpy(); // 新增：初始化滚动监听
+    initScrollSpy();
 });
-
-// 窗口大小变化时重置图表尺寸
-window.addEventListener('resize',()=>{
-    document.querySelectorAll('.chart').forEach(c=>{
-        if(echarts.getInstanceByDom(c)) echarts.getInstanceByDom(c).resize();
-    });
-});
+window.addEventListener('resize',()=>{document.querySelectorAll('.chart').forEach(c=>{if(echarts.getInstanceByDom(c))echarts.getInstanceByDom(c).resize()})});
 </script>
 </body>
 </html>
